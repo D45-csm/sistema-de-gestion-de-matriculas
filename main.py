@@ -1,3 +1,4 @@
+# import funciones as fn
 from funciones import *
 from rich.console import Console
 
