@@ -3,6 +3,7 @@ from rich.console import Console
 
 console = Console()
 
+
 while True:
 
     console.print("""
