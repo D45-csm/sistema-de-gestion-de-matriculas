@@ -4,36 +4,64 @@
             "id_estudiante": 1,
             "nombre": "daniela",
             "carrera": "sistemas"
+        },
+        {
+            "id_estudiante": 3,
+            "nombre": "daniel",
+            "carrera": "adso"
         }
     ],
     "cursos": [
-        {
-            "id_curso": 101,
-            "nombre_curso": "Bases de Datos",
-            "creditos": 2
-        },
         {
             "id_curso": 102,
             "nombre_curso": "JavaScript",
             "creditos": 3
         },
         {
-            "id_curso": 103,
-            "nombre_curso": "Python",
+            "id_curso": 104,
+            "nombre_curso": "algoritmos en python",
+            "creditos": 2
+        },
+        {
+            "id_curso": 408,
+            "nombre_curso": "implementos de seguridad",
             "creditos": 4
         },
         {
-            "id_curso": 104,
-            "nombre_curso": "Algoritmos",
-            "creditos": 2
+            "id_curso": 409,
+            "nombre_curso": "errores",
+            "creditos": 6
         }
     ],
     "matriculas": [
         {
             "id_matricula": 1,
             "id_estudiante": 1,
-            "id_curso": [101, 102],
+            "id_curso": [
+                101,
+                102
+            ],
             "periodo_academico": "2026-2"
+        },
+        {
+            "id_matricula": 2,
+            "id_estudiante": 4,
+            "id_curso": [
+                101,
+                104,
+                408
+            ],
+            "periodo_academico": "2018-2"
+        },
+        {
+            "id_matricula": 3,
+            "id_estudiante": 3,
+            "id_curso": [
+                104,
+                409,
+                408
+            ],
+            "periodo_academico": "2018-5"
         }
     ]
 }

@@ -72,3 +72,4 @@ while True:
 
         case _:
             console.print("[red]✖ Opción invalida[/red]")
+
