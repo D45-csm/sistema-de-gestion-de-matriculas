@@ -62,6 +62,31 @@
                 408
             ],
             "periodo_academico": "2018-5"
+        },
+        {
+            "id_matricula": 4,
+            "id_estudiante": 5,
+            "id_curso": [
+                30
+            ],
+            "periodo_academico": "4"
+        },
+        {
+            "id_matricula": 5,
+            "id_estudiante": 3,
+            "id_curso": [
+                102
+            ],
+            "periodo_academico": "2009"
+        },
+        {
+            "id_matricula": 6,
+            "id_estudiante": 3,
+            "id_curso": [
+                102,
+                408
+            ],
+            "periodo_academico": "2026-1"
         }
     ]
 }
