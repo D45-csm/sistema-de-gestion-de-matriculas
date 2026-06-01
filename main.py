@@ -1,49 +1,74 @@
-from funciones import (
-    crear_estudiante, listar_estudiantes,
-    crear_curso, listar_cursos,
-    registrar_matricula, listar_matriculas,
-    lista_cursos_estudiante, calcular_creditos
-)
+from funciones import *
+from rich.console import Console
 
-def menu():
-    while True:
-        print("\n--- Sistema de Gestión de Matrículas ---")
-        print("1. Crear estudiante")
-        print("2. Listar estudiantes")
-        print("3. Crear curso")
-        print("4. Listar cursos")
-        print("5. Registrar matrícula")
-        print("6. Listar matrículas")
-        print("7. Ver cursos de un estudiante")
-        print("8. Calcular créditos de un estudiante")
-        print("9. Salir")
+console = Console()
 
-        opcion = input("Seleccione una opción: ")
+while True:
 
-        if opcion == "1":
+    console.print("""
+[cyan]---------------- MENU ----------------[/cyan]
+
+1. Crear estudiante
+2. Mostrar estudiantes
+3. Actualizar estudiante
+4. Eliminar estudiante
+
+5. Crear curso
+6. Mostrar cursos
+7. Actualizar curso
+8. Eliminar curso
+
+9. Matricular estudiante
+10. Ver cursos de un estudiante
+11. Ver estudiantes de un curso
+12. Total de creditos
+
+13. Salir
+""")
+
+    opcion = input("Seleccione una opcion: ")
+
+    match opcion:
+
+        case "1":
             crear_estudiante()
-        elif opcion == "2":
-            listar_estudiantes()
-        elif opcion == "3":
-            crear_curso()
-        elif opcion == "4":
-            listar_cursos()
-        elif opcion == "5":
-            registrar_matricula()
-        elif opcion == "6":
-            listar_matriculas()
-        elif opcion == "7":
-            lista_cursos_estudiante()
-        elif opcion == "8":
-            try:
-                id_est = int(input("Ingrese el ID del estudiante: "))
-                calcular_creditos(id_est)
-            except ValueError:
-                print("Error: el ID debe ser un número.")
-        elif opcion == "9":
-            print("Saliendo...")
-            break
-        else:
-            print("Opción inválida, intente de nuevo.")
 
-menu()
+        case "2":
+            mostrar_estudiantes()
+
+        case "3":
+            actualizar_estudiante()
+
+        case "4":
+            eliminar_estudiante()
+
+        case "5":
+            crear_curso()
+
+        case "6":
+            mostrar_cursos()
+
+        case "7":
+            actualizar_curso()
+
+        case "8":
+            eliminar_curso()
+
+        case "9":
+            matricular_estudiante()
+
+        case "10":
+            ver_cursos_estudiante()
+
+        case "11":
+            ver_estudiantes_curso()
+
+        case "12":
+            total_creditos()
+
+        case "13":
+            console.print("[green]✔ Programa finalizado[/green]")
+            break
+
+        case _:
+            console.print("[red]✖ Opción invalida[/red]")
