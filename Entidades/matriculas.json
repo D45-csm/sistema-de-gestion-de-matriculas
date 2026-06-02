@@ -1,0 +1,11 @@
+[
+    {
+        "id_matricula": 1,
+        "id_estudiante": 1,
+        "id_curso": [
+            101,
+            107
+        ],
+        "periodo_academico": "2026-2"
+    }
+]
