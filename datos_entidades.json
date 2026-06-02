@@ -9,6 +9,11 @@
             "id_estudiante": 3,
             "nombre": "daniel",
             "carrera": "adso"
+        },
+        {
+            "id_estudiante": 5,
+            "nombre": "David",
+            "carrera": "Derecho"
         }
     ],
     "cursos": [
@@ -31,6 +36,11 @@
             "id_curso": 409,
             "nombre_curso": "errores",
             "creditos": 6
+        },
+        {
+            "id_curso": 410,
+            "nombre_curso": "comandos de python",
+            "creditos": 3
         }
     ],
     "matriculas": [
