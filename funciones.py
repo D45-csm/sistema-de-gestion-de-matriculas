@@ -1,25 +1,10 @@
 import json
 import sys
+from entidades_principales import  *
+from guardar_cargar_datos import cargar_datos, guardar_datos
 from rich.console import Console
 from rich.table import Table
 console = Console()
-
-# --- CARGA Y GUARDADO DE DATOS ---
-def cargar_datos():
-    try:
-        with open("datos_entidades.json", "r", encoding="utf-8") as archivo:
-            return json.load(archivo)
-    except FileNotFoundError:
-        return {"estudiantes": [], "cursos": [], "matriculas": []}
-
-def guardar_datos(datos):
-    try:
-        with open("datos_entidades.json", "w", encoding="utf-8") as archivo:
-            json.dump(datos, archivo, indent=4)
-        console.print("[green]✔ Datos guardados correctamente[/green]")
-    except Exception:
-        console.print("[red]✖ Ocurrio un error al guardar los datos[/red]")
-
 
 # --- VALIDACIONES LOCALES ---
 
