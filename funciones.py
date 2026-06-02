@@ -1,7 +1,7 @@
 import json
 import sys
 from entidades_principales import  *
-from guardar_cargar_datos import cargar_datos, guardar_datos
+from modules.guardar_cargar_datos import cargar_datos, guardar_datos
 from rich.console import Console
 from rich.table import Table
 console = Console()
