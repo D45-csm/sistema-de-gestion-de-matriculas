@@ -6,7 +6,6 @@ from rich import box
 console = Console()
 
 def mostrar_menu():
-    # Texto limpio del menu sin saltos de linea innecesarios al inicio o final
     menu = (
         "[bold cyan]1.[/] Gestion de estudiantes\n"
         "[bold cyan]2.[/] Gestion de cursos\n"
@@ -16,7 +15,7 @@ def mostrar_menu():
         "[bold cyan]6.[/] Ver creditos totales de un estudiante\n"
         "[bold cyan]0.[/] Salir"
     )
-    # expand=False y title_align="center" aseguran que el recuadro no se tuerza
+    
     console.print(Panel(
         menu, 
         title="[bold cyan]MENU PRINCIPAL[/]", 
