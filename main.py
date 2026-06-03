@@ -1,8 +1,22 @@
-# import funciones as fn
-from funciones import *
+import importlib.util
+import os
+import sys
+from pathlib import Path
+
 from rich.console import Console
 
 console = Console()
+
+current_dir = Path(__file__).resolve().parent
+funciones_path = current_dir / "funciones.py"
+
+if funciones_path.exists():
+    spec = importlib.util.spec_from_file_location("funciones", str(funciones_path))
+    fn = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(fn)
+else:
+    console.print(f"[red]✖ No se encontró el módulo 'funciones' en {funciones_path}[/red]")
+    sys.exit(1)
 
 
 while True:
@@ -33,40 +47,40 @@ while True:
     match opcion:
 
         case "1":
-            crear_estudiante()
+            fn.crear_estudiante()
 
         case "2":
-            mostrar_estudiantes()
+            fn.mostrar_estudiantes()
 
         case "3":
-            actualizar_estudiante()
+            fn.actualizar_estudiante()
 
         case "4":
-            eliminar_estudiante()
+            fn.eliminar_estudiante()
 
         case "5":
-            crear_curso()
+            fn.crear_curso()
 
         case "6":
-            mostrar_cursos()
+            fn.mostrar_cursos()
 
         case "7":
-            actualizar_curso()
+            fn.actualizar_curso()
 
         case "8":
-            eliminar_curso()
+            fn.eliminar_curso()
 
         case "9":
-            matricular_estudiante()
+            fn.matricular_estudiante()
 
         case "10":
-            ver_cursos_estudiante()
+            fn.ver_cursos_estudiante()
 
         case "11":
-            ver_estudiantes_curso()
+            fn.ver_estudiantes_curso()
 
         case "12":
-            total_creditos()
+            fn.total_creditos()
 
         case "13":
             console.print("[green]✔ Programa finalizado[/green]")
