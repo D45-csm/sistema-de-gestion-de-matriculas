@@ -1,77 +1,61 @@
-# import funciones as fn
-from funciones import *
+from modules.crud_estudiantes import menu_gestion_estudiantes, ver_cursos_estudiante
 from rich.console import Console
+from rich.panel import Panel
+from rich import box
 
 console = Console()
 
+def mostrar_menu():
+    # Texto limpio del menu sin saltos de linea innecesarios al inicio o final
+    menu = (
+        "[bold cyan]1.[/] Gestion de estudiantes\n"
+        "[bold cyan]2.[/] Gestion de cursos\n"
+        "[bold cyan]3.[/] Gestion de matriculas\n"
+        "[bold cyan]4.[/] Ver cursos de un estudiante\n"
+        "[bold cyan]5.[/] Ver estudiantes de un curso\n"
+        "[bold cyan]6.[/] Ver creditos totales de un estudiante\n"
+        "[bold cyan]0.[/] Salir"
+    )
+    # expand=False y title_align="center" aseguran que el recuadro no se tuerza
+    console.print(Panel(
+        menu, 
+        title="[bold cyan]MENU PRINCIPAL[/]", 
+        title_align="center",
+        box=box.ROUNDED,
+        border_style="cyan",
+        expand=False
+    ))
 
-while True:
+def main():
+    while True:
+        mostrar_menu()
+        opcion = console.input("\nSeleccione una opcion: ").strip()
 
-    console.print("""
-[cyan]---------------- MENU ----------------[/cyan]
+        match opcion:
+            case "1":
+                menu_gestion_estudiantes()
 
-1. Crear estudiante
-2. Mostrar estudiantes
-3. Actualizar estudiante
-4. Eliminar estudiante
+            case "2":
+                console.print("[bold blue]Accediendo a Gestion de cursos...[/bold blue]")
 
-5. Crear curso
-6. Mostrar cursos
-7. Actualizar curso
-8. Eliminar curso
+            case "3":
+                console.print("[bold blue]Accediendo a Gestion de matriculas...[/bold blue]")
 
-9. Matricular estudiante
-10. Ver cursos de un estudiante
-11. Ver estudiantes de un curso
-12. Total de creditos
+            case "4":
+                ver_cursos_estudiante()
 
-13. Salir
-""")
+            case "5":
+                console.print("[bold blue]Cargando estudiantes del curso...[/bold blue]")
 
-    opcion = input("Seleccione una opcion: ")
+            case "6":
+                console.print("[bold blue]Calculando creditos totales...[/bold blue]")
 
-    match opcion:
+            case "0":
+                console.print("[bold red]Saliendo del sistema...[/bold red]")
+                break
 
-        case "1":
-            crear_estudiante()
+            case _:
+                console.print("[bold red]Opcion no valida, intente de nuevo.[/bold red]")
 
-        case "2":
-            mostrar_estudiantes()
-
-        case "3":
-            actualizar_estudiante()
-
-        case "4":
-            eliminar_estudiante()
-
-        case "5":
-            crear_curso()
-
-        case "6":
-            mostrar_cursos()
-
-        case "7":
-            actualizar_curso()
-
-        case "8":
-            eliminar_curso()
-
-        case "9":
-            matricular_estudiante()
-
-        case "10":
-            ver_cursos_estudiante()
-
-        case "11":
-            ver_estudiantes_curso()
-
-        case "12":
-            total_creditos()
-
-        case "13":
-            console.print("[green]✔ Programa finalizado[/green]")
-            break
-
-        case _:
-            console.print("[red]✖ Opción invalida[/red]")
-
+if __name__ == "__main__":
+    main()
