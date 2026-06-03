@@ -7,7 +7,7 @@ def guardar_datos(archivo_json, datos): # se debe poner un archivo json y los da
     try:
         with open(archivo_json, "w", encoding="utf-8") as archivo:
             json.dump(datos, archivo, indent=4)
-        console.print("[green]✔ Datos guardados correctamente[/green]")
+        console.print("[bold green]✔ Datos guardados correctamente[/bold green]")
     except Exception:
         console.print("[red]✖ Ocurrio un error al guardar los datos[/red]")
 
