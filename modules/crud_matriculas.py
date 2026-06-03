@@ -1,59 +1,68 @@
-def crear_estudiante():
-    datos = cargar_datos()
-    nombre = pedir_texto("Ingrese el nombre del estudiante")
-    carrera = pedir_texto("Ingrese la carrera del estudiante")
-    
-    nuevo_id = 1
-    for estudiante in datos["estudiantes"]:
-        if estudiante["id_estudiante"] >= nuevo_id:
-            nuevo_id = estudiante["id_estudiante"] + 1
+from guardar_cargar_datos import cargar_datos, guardar_datos
+from rich import print # Importamos el print de rich para dar estilos
 
-    datos["estudiantes"].append({
-        "id_estudiante": nuevo_id,
-        "nombre": nombre,
-        "carrera": carrera
-    })
-    guardar_datos(datos)
-    console.print(f"[green]✔ Estudiante creado con ID: {nuevo_id}[/green]")
+def matricular_estudiante():
+    datos_matriculas = cargar_datos("data/matriculas.json")
+    datos_estudiantes = cargar_datos("data/estudiantes.json")
+    datos_cursos = cargar_datos("data/cursos.json")
 
-""" def mostrar_estudiantes():
-    datos = cargar_datos()
-    if not datos["estudiantes"]:
-        console.print("[yellow]No hay estudiantes registrados[/yellow]")
-        return
-    table = Table(title="Lista de Estudiantes")
-    table.add_column("ID")
-    table.add_column("Nombre")
-    table.add_column("Carrera")
-    for estudiante in datos["estudiantes"]:
-        table.add_row(str(estudiante["id_estudiante"]), estudiante["nombre"], estudiante["carrera"])
-    console.print(table)
+    # 1. Validar ID Estudiante
+    print("\n[bold cyan]--- LISTADO DE ESTUDIANTES ---[/bold cyan]")
+    for e in datos_estudiantes:
+        print(f"[cyan]ID:[/cyan] {e['id_estudiante']} | [cyan]Nombre:[/cyan] {e['nombre']}")
 
-def actualizar_estudiante():
-    mostrar_estudiantes()
-    datos = cargar_datos()
-    
+    id_estudiante = None
     while True:
-        id_buscar = pedir_entero("Ingrese el ID del estudiante a actualizar")
-        for estudiante in datos["estudiantes"]:
-            if estudiante["id_estudiante"] == id_buscar:
-                estudiante["nombre"] = pedir_texto("Ingrese el nuevo nombre")
-                estudiante["carrera"] = pedir_texto("Ingrese la nueva carrera")
-                guardar_datos(datos)
-                console.print("[green]✔ Estudiante actualizado correctamente[/green]")
-                return
-        console.print("[red]✖ El ID de estudiante no existe. Intente de nuevo.[/red]")
+        entrada = input("\nIngrese el ID del estudiante a matricular: ").strip()
+        for est in datos_estudiantes:
+            if str(est['id_estudiante']) == entrada:
+                id_estudiante = entrada
+                break
+        
+        if id_estudiante:
+            break
+        print("[bold red]Error:[/bold red] ID de estudiante no encontrado. Intente de nuevo.")
 
-def eliminar_estudiante():
-    mostrar_estudiantes()
-    datos = cargar_datos()
-    
+    # 2. Validar ID Curso
+    print("\n[bold magenta]--- LISTADO DE CURSOS ---[/bold magenta]")
+    for c in datos_cursos:
+        print(f"[magenta]ID:[/magenta] {c['id_curso']} | [magenta]Curso:[/magenta] {c['nombre_curso']}")
+
+    id_curso = None
     while True:
-        id_buscar = pedir_entero("Ingrese el ID del estudiante a eliminar")
-        for estudiante in datos["estudiantes"]:
-            if estudiante["id_estudiante"] == id_buscar:
-                datos["estudiantes"].remove(estudiante)
-                guardar_datos(datos)
-                console.print("[green]✔ Estudiante eliminado correctamente[/green]")
-                return
-        console.print("[red]✖ El ID de estudiante no existe. Intente de nuevo.[/red]") """
+        entrada = input("\nIngrese el ID del curso: ").strip()
+        for cur in datos_cursos:
+            if str(cur['id_curso']) == entrada:
+                id_curso = entrada
+                break
+        
+        if id_curso:
+            break
+        print("[bold red]Error:[/bold red] ID de curso no encontrado. Intente de nuevo.")
+
+    # 3. Validar si ya está matriculado
+    for matricula in datos_matriculas:
+        # Extraemos la lista de cursos y los convertimos a string para asegurar una buena comparación
+        cursos_matriculados = [str(curso) for curso in matricula['id_curso']]
+        
+        # Verificamos si el ID del estudiante coincide Y si el ID del curso está dentro de su lista
+        if str(matricula['id_estudiante']) == id_estudiante and id_curso in cursos_matriculados:
+            print("[bold yellow]Error:[/bold yellow] El estudiante ya está matriculado en este curso.")
+            return
+        
+    # Pedimos el periodo académico FUERA del bucle for
+    periodo_academico = input("\nIngrese el periodo académico (e.g., 2026-2): ").strip()
+
+    # 4. Guardar
+    nueva_matricula = {
+        "id_matricula": len(datos_matriculas) + 1,
+        "id_estudiante": int(id_estudiante),
+        "id_curso": [int(id_curso)],
+        "periodo_academico": periodo_academico
+    }
+
+    datos_matriculas.append(nueva_matricula)
+    guardar_datos("data/matriculas.json", datos_matriculas)
+    print(f"\n[bold green]¡Éxito![/bold green] Estudiante [bold]{id_estudiante}[/bold] matriculado correctamente en el curso [bold]{id_curso}[/bold].")
+
+matricular_estudiante()
