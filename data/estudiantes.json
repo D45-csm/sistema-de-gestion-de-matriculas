@@ -1,16 +1,12 @@
 [
     {
-        "id_estudiante": 1,
-        "nombre": "Daniela",
-        "carrera": "ADSO",
-        "correo": "daniela@example.com",
-        "telefono": "1234567890"
+        "id_estudiante": 2,
+        "nombre": "mafe",
+        "carrera": "sistemas"
     },
     {
-        "id_estudiante": 2,
-        "nombre": "Daniel",
-        "carrera": "topografia",
-        "correo": "acos79.0.98dan1lec@gmail.com",
-        "telefono": "3118689862"
+        "id_estudiante": 3,
+        "nombre": "pepito",
+        "carrera": "sistemas"
     }
 ]
