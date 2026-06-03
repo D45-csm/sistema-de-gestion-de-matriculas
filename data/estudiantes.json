@@ -3,5 +3,10 @@
         "id_estudiante": 2,
         "nombre": "mafe",
         "carrera": "sistemas"
+    },
+    {
+        "id_estudiante": 3,
+        "nombre": "pepito",
+        "carrera": "sistemas"
     }
 ]
